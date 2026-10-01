@@ -6,4 +6,5 @@ COPY src ./src
 COPY public ./public
 ENV NODE_ENV=production PORT=10000
 EXPOSE 10000
-CMD ["npm", "start"]
+# Render injects PORT; fall back to 10000 so the service still starts locally.
+CMD ["sh", "-c", "npm start"]

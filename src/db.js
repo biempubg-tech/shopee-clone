@@ -1,9 +1,13 @@
 import { DatabaseSync } from 'node:sqlite';
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DB_PATH = process.env.DB_PATH || path.join(__dirname, '..', 'data', 'shop.db');
+
+// The data/ dir is gitignored, so on a fresh clone/CI build it does not exist yet.
+fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
 
 export const db = new DatabaseSync(DB_PATH);
 

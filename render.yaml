@@ -13,6 +13,6 @@ services:
     healthCheckPath: /api/health
     envVars:
       - key: NODE_VERSION
-        value: "24.0.0"
+        value: "24"
       - key: NODE_ENV
         value: production
