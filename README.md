@@ -14,6 +14,43 @@ npm start        # http://localhost:3000
 
 Tài khoản demo: `demo@shopee.vn` / `123456` — hoặc tự đăng ký.
 
+## Deploy lên Internet (Render, miễn phí)
+
+**Miền được cấp:** `https://shopee-clone-vn.onrender.com`
+
+> Tên `.onrender.com` **không đổi được** sau khi tạo service. Nó lấy từ trường `name` trong `render.yaml`.
+
+**Bước 1 — đẩy code lên GitHub:**
+```bash
+git remote add origin https://github.com/<user>/shopee-clone.git
+git push -u origin master
+```
+GitHub hỏi mật khẩu → dùng **Personal Access Token**, không dùng mật khẩu tài khoản.
+
+**Bước 2 — tạo service:**
+https://render.com → **New + → Blueprint** → chọn repo. Render đọc `render.yaml` và tự deploy.
+Hoặc **New + → Web Service** → connect repo → Runtime `Node` → Build `npm ci --omit=dev` → Start `npm start`.
+
+**Bước 3 — kiểm tra:** mở `/api/health` phải trả `{"ok":true,...}`.
+
+**Giới hạn plan free:** sleep sau 15 phút không có truy cập (lần mở đầu chậm ~30s), và **filesystem tạm — mỗi lần deploy lại dữ liệu SQLite bị xoá**, chỉ còn dữ liệu mẫu được seed lại. Dùng thật thì cần Postgres (Neon free tier) hoặc plan có persistent disk.
+
+### Nâng lên tên miền riêng (ví dụ `shopee.vn`)
+
+Render Hobby plan gồm 2 custom domain miễn phí, nhưng **tên miền phải mua ở registrar** (~250.000–350.000đ/năm cho .com, .vn). Không có tên miền thật nào miễn phí.
+
+Sau khi mua, tại Render: service → **Settings → Custom Domains → Add Custom Domain** → nhập `shopee.vn`.
+Rồi tại registrar tạo bản ghi DNS:
+
+| Tên | Loại | Trỏ tới |
+|---|---|---|
+| `@` | ALIAS/ANAME (nếu hỗ trợ), nếu không thì A | `216.24.57.1` |
+| `www` | CNAME | `shopee-clone-vn.onrender.com` |
+
+Render tự cấp chứng chỉ TLS miễn phí và tự chuyển HTTP → HTTPS. Chờ DNS lan truyền (vài phút đến 24 giờ).
+Có domain riêng thì vào Settings tắt **Render Subdomain** được (chỉ truy cập qua domain của bạn).
+
+
 ## Tính năng
 
 | Nhóm | Chi tiết |

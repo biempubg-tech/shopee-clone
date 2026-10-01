@@ -2,7 +2,9 @@
 # Deploy: Render Dashboard → New → Blueprint → point at this repo.
 services:
   - type: web
-    name: shopee-clone
+    # NOTE: this name becomes the permanent *.onrender.com subdomain and Render
+    # does NOT allow renaming it after creation. Pick carefully.
+    name: shopee-clone-vn
     runtime: node
     plan: free
     region: singapore
