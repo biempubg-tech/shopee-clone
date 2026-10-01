@@ -1,0 +1,16 @@
+# Render blueprint — https://render.com
+# Deploy: Render Dashboard → New → Blueprint → point at this repo.
+services:
+  - type: web
+    name: shopee-clone
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "24.0.0"
+      - key: NODE_ENV
+        value: production

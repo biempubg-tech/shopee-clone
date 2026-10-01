@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopee-clone</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <div class="topbar-left">
+      <span data-i18n="sellerCenter">Kênh bán hàng</span> <span class="dot">•</span> <span data-i18n="sellerJoin">Bán hàng cùng Shopee</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#orders" data-i18n="orders">Đơn hàng</a>
+      <a href="#" data-i18n="help">Trợ giúp</a>
+      <a href="#login" data-i18n="login">Đăng nhập</a>
+    </div>
+  </div>
+</header>
+
+<div class="header">
+  <div class="wrap header-in">
+    <a class="logo" href="#home">🛒 <span>Shopee</span></a>
+    <form class="search" id="search-form">
+      <input id="search-input" data-i18n-ph="searchPlaceholder" placeholder="Bạn đang tìm kiếm sản phẩm nào?">
+      <button type="submit">🔍</button>
+    </form>
+    <div class="header-actions">
+      <button class="lang-toggle" id="lang-toggle" title="Language">🇻🇳 <span id="lang-label">Tiếng Việt</span></button>
+      <a class="cart-btn" href="#cart">🛒 <span data-i18n="cart">Giỏ hàng</span> <b class="badge" id="cart-count" hidden>0</b></a>
+    </div>
+  </div>
+</div>
+
+<main class="wrap" id="view">
+  <section class="cat-row" id="cat-row"></section>
+
+  <section class="banner">
+    <div class="banner-text">
+      <h1 data-i18n="bannerTitle">Mua sắm online giá tốt</h1>
+      <p data-i18n="bannerSub">Miễn phí vận chuyển toàn quốc cho đơn từ 150.000đ</p>
+      <button class="btn-primary" data-i18n="shopNow">Mua ngay</button>
+    </div>
+    <div class="banner-art">🎁</div>
+  </section>
+
+  <h2 class="section-title" data-i18n="flashSale">Flash Sale</h2>
+  <section class="grid grid-flash" id="flash-grid"></section>
+
+  <h2 class="section-title" data-i18n="shopeeMall">Shopee Mall</h2>
+  <section class="grid" id="mall-grid"></section>
+
+  <h2 class="section-title" id="list-title" data-i18n="allProducts">Tất cả sản phẩm</h2>
+  <div class="filters">
+    <select id="sort">
+      <option value="popular" data-i18n="sortPopular">Phổ biến nhất</option>
+      <option value="newest" data-i18n="sortNewest">Mới nhất</option>
+      <option value="price_asc" data-i18n="sortPriceAsc">Giá: Thấp đến cao</option>
+      <option value="price_desc" data-i18n="sortPriceDesc">Giá: Cao đến thấp</option>
+      <option value="rating" data-i18n="sortRating">Đánh giá cao</option>
+    </select>
+    <div class="price-range">
+      <input type="number" id="min-price" placeholder="₫ từ" data-i18n-ph="fromPrice">
+      <span>—</span>
+      <input type="number" id="max-price" placeholder="₫ đến" data-i18n-ph="toPrice">
+      <button class="btn-ghost" id="apply-price" data-i18n="apply">Áp dụng</button>
+    </div>
+  </div>
+  <section class="grid" id="product-grid"></section>
+  <div class="pager" id="pager"></div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p data-i18n="footerNote">Demo full-stack — Node.js + Express + SQLite. Dữ liệu là dữ liệu giả lập.</p>
+    <p class="stats" id="stats"></p>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div class="overlay" id="overlay" hidden>
+  <div class="modal" id="modal"></div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
